@@ -1,0 +1,16 @@
+var pipeline = [
+         {$project : 
+              { 'titlewords' :
+                  {$size:
+                      {$split : 
+                           [ '$title' ," " ]
+                       }
+                   }
+                }
+           },
+           {$match: { 'titlewords' :1 }
+           }
+           ];
+           
+           
+           db.movies.aggregate(pipeline).itcount()
